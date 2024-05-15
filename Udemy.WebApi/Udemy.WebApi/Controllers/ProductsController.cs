@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Udemy.WebApi.Data;
+using Udemy.WebApi.Interfaces;
+using Udemy.WebApi.Repositories;
 
 namespace Udemy.WebApi.Controllers
 {
@@ -6,17 +9,29 @@ namespace Udemy.WebApi.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetProducts()
+        private readonly IProducRepository _productRepository;
+        public ProductsController(IProducRepository producRepository)
         {
-            return Ok(new[] { new { Name = "Bilgisayar", Price = 1500 },
-            new{Name="Telefon",Price=1000} });
+            _productRepository = producRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _productRepository.GetAllAsync();
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProduct(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return Ok(new[] { new { Name = "Bilgisayar", Price = 1500 } });
+            var result =  await _productRepository.GetByIdAsync(id);
+            if (result == null)
+            {
+                return NotFound(id);
+            }
+            return Ok(result);
         }
     }
 }

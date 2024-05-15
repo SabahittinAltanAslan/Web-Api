@@ -12,7 +12,7 @@ using Udemy.WebApi.Data;
 namespace Udemy.WebApi.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20240514182105_InitialCreate")]
+    [Migration("20240515144751_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

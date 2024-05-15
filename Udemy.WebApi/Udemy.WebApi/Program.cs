@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Udemy.WebApi.Data;
+using Udemy.WebApi.Interfaces;
+using Udemy.WebApi.Repositories;
 
 namespace Udemy.WebApi
 {
@@ -16,13 +18,18 @@ namespace Udemy.WebApi
             {
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            builder.Services.AddScoped<IProducRepository,ProductRepository>();
+
+
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
-            //builder.Services.AddSwaggerGen(c =>
-            //c.SwaggerDoc("v1", new OpenApiInfo { Title = "Udemy.WebApi", Version = "v1" })
-            //);
+            builder.Services.AddSwaggerGen(c =>
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Udemy.WebApi", Version = "v1" })
+            );
 
             var app = builder.Build();
 
