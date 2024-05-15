@@ -33,5 +33,37 @@ namespace Udemy.WebApi.Controllers
             }
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Product product)
+        {
+            var addedProduct = await _productRepository.CreateAsync(product);
+            return Created(string.Empty,addedProduct);
+        }
+
+        [HttpPut]
+
+        public async Task<IActionResult> Update(Product product)
+        {
+            var checkProduct = await _productRepository.GetByIdAsync(product.Id);
+            if(checkProduct == null)
+            {
+                return NotFound(product.Id);
+            }
+            await _productRepository.UpdateAsync(product);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(int id)
+        {
+            var checkProduct = await _productRepository.GetByIdAsync(id);
+            if (checkProduct == null)
+            {
+                return NotFound(id);
+            }
+            await _productRepository.RemoveAsync(id);
+            return NoContent();
+        }
     }
 }
