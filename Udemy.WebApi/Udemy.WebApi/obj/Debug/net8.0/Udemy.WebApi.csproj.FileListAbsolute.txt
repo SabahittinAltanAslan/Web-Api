@@ -135,3 +135,8 @@ C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\De
 C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\Udemy.WebApi.staticwebassets.runtime.json
+C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Legen\OneDrive\Belgeler\GitHub\Web-Api\Udemy.WebApi\Udemy.WebApi\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

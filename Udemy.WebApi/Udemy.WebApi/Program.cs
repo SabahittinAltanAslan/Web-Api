@@ -20,10 +20,20 @@ namespace Udemy.WebApi
             });
 
             builder.Services.AddScoped<IProducRepository,ProductRepository>();
+            builder.Services.AddScoped<IDummyRepository,DummyRepository>();
 
+            builder.Services.AddCors(cors =>
+            {
+                cors.AddPolicy("UdemyCorsPolicy", opt =>
+                {
+                    opt.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
 
-
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddNewtonsoftJson(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
@@ -39,11 +49,18 @@ namespace Udemy.WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseStaticFiles();
+            app.UseRouting();
+
+            app.UseCors("UdemyCorsPolicy");
 
             app.UseAuthorization();
 
 
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.Run();
         }

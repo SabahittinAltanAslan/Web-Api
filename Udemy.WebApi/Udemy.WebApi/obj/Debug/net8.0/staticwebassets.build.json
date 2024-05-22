@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "/fvxLUtr9tu9g0nWyfwG642brVnUWvqh3yHMbxdek2c=",
+  "Hash": "fxvaUlNwShY3fSpEggXbgJsDIRKHhrz8xbg229tOTP4=",
   "Source": "Udemy.WebApi",
   "BasePath": "_content/Udemy.WebApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Udemy.WebApi\\wwwroot",
+      "Source": "Udemy.WebApi",
+      "ContentRoot": "C:\\Users\\Legen\\OneDrive\\Belgeler\\GitHub\\Web-Api\\Udemy.WebApi\\Udemy.WebApi\\wwwroot\\",
+      "BasePath": "_content/Udemy.WebApi",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

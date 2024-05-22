@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.Console;
 using Udemy.WebApi.Data;
 using Udemy.WebApi.Interfaces;
 using Udemy.WebApi.Repositories;
 
 namespace Udemy.WebApi.Controllers
 {
+    [EnableCors]
     [ApiController]
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
@@ -24,9 +27,9 @@ namespace Udemy.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(int id)//FromQuery
         {
-            var result =  await _productRepository.GetByIdAsync(id);
+            var result = await _productRepository.GetByIdAsync(id);
             if (result == null)
             {
                 return NotFound(id);
@@ -35,10 +38,10 @@ namespace Udemy.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(Product product)//FromBody
         {
             var addedProduct = await _productRepository.CreateAsync(product);
-            return Created(string.Empty,addedProduct);
+            return Created(string.Empty, addedProduct);
         }
 
         [HttpPut]
@@ -46,7 +49,7 @@ namespace Udemy.WebApi.Controllers
         public async Task<IActionResult> Update(Product product)
         {
             var checkProduct = await _productRepository.GetByIdAsync(product.Id);
-            if(checkProduct == null)
+            if (checkProduct == null)
             {
                 return NotFound(product.Id);
             }
@@ -64,6 +67,22 @@ namespace Udemy.WebApi.Controllers
             }
             await _productRepository.RemoveAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("upload")]
+        public async Task<IActionResult> Upload(IFormFile formFile)
+        {
+            var newName = Guid.NewGuid() + "." + Path.GetExtension(formFile.FileName);
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", newName);
+            var stream = new FileStream(path, FileMode.Create);
+            await formFile.CopyToAsync(stream);
+            return Created(string.Empty, formFile);
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult Test([FromServices] IDummyRepository dummyRepository)
+        {
+            return Ok(dummyRepository.GetName());
         }
     }
 }
